@@ -19,16 +19,16 @@ int countPairs2(int *arr, int len, int value) {
   while (i < len) {
     int target = value - get(arr, i);
     if (target < get(arr, i)) break;
-    int j = len - 1;
-    while (j > i) {
-      if (get(arr, i) + get(arr, j) == value) {
-        cnt++;
-        while (get(arr, j) == get(arr, j - 1)) {
-          cnt++; j--;
+    int j = i + 1;
+    while (j < len) {
+      if (get(arr, j) == target) {
+        cnt++; j++;
+        while (j < len && get(arr, j) == target) {
+          cnt++; j++;
         }
         break;
       }
-      j--;
+      j++;
     }
     i++;
   }
